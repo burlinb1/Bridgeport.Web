@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class AuthService{
+    constructor(private storageService: StorageService) {
+    }
 
-    public getToken(): string {
-        return "authtoken";
+    public getToken() {
+        return this.storageService.getAuthToken();
     }
 
     public isAuthenticated(): boolean {
-        return false;
+        if (this.getToken()){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

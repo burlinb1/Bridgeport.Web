@@ -7,6 +7,10 @@ export class StorageService {
     }
 
     setAuthToken(token: string){
-        this.localStorageService.set("authtoken", token);
+        this.localStorageService.set('authtoken', token);
+    }
+
+    getAuthToken() {
+        return this.localStorageService.get('authtoken');
     }
 }

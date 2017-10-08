@@ -1,13 +1,17 @@
 <form class="example-form">
-  <div>
-      <div class="example-full-width">
-        <input class="k-textbox-no-border k-textbox" placeholder="Enter your email address" value="" />
-      </div>
-      <div class="example-full-width">
-        <input class="k-textbox-no-border k-textbox" placeholder="Enter your password" value="" />
-      </div>
-      <div>
-        <button class="k-button">Test</button>
-      </div>      
+  <div class="example-full-width row">
+    <div class="col-sm-6">
+        <input [(ngModel)]="userName" class="k-textbox-no-border k-textbox" 
+          name='userName'
+          placeholder="Enter your email address" />
+    </div>    
+  </div>
+  <div class="example-full-width row">
+    <input [(ngModel)]="password" class="k-textbox-no-border k-textbox" 
+      name='password'
+      placeholder="Enter your password" />
+  </div>
+  <div clas="row">
+    <button class="k-button" (click)="login()">Log in</button>
   </div>  
 </form>
