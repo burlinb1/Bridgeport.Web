@@ -14,11 +14,13 @@ import { StorageService } from './storage/storage.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
+import { RateUnitTypeComponent } from './rateunittype/rateunittype.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RateUnitTypeComponent
   ],
   imports: [
     BrowserModule,

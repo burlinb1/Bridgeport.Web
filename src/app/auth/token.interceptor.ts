@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
       if (!this.auth.isAuthenticated()) {
         console.log('WARNING: user is NOT authenticated');
         // redirect to login.
-        this.router.navigate(['/login']);
+        //this.router.navigate(['/login']);
       }
       request = request.clone({
         setHeaders: {
