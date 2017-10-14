@@ -1,17 +1,21 @@
-<form class="example-form">
-  <div class="example-full-width row">
-    <div class="col-sm-6">
-        <input [(ngModel)]="userName" class="k-textbox-no-border k-textbox" 
-          name='userName'
-          placeholder="Enter your email address" />
+<form class="my-3">
+  <div class="form-group">
+    <div class="col col-sm-3">
+        <input [(ngModel)]="userName" class="form-control" 
+            name='userName'
+            placeholder="Enter your email address" />
     </div>    
   </div>
-  <div class="example-full-width row">
-    <input [(ngModel)]="password" class="k-textbox-no-border k-textbox" 
-      name='password'
-      placeholder="Enter your password" />
+  <div class="form-group">
+      <div class="col col-sm-3">
+          <input [(ngModel)]="password" class="form-control" 
+              name='password'
+              placeholder="Enter your password" />
+      </div>
   </div>
-  <div clas="row">
-    <button class="k-button" (click)="login()">Log in</button>
+  <div class="form-group">
+      <div class="col col-sm-6">
+        <button type="button" class="btn btn-primary" (click)="login()">Log in</button>
+      </div>
   </div>  
 </form>

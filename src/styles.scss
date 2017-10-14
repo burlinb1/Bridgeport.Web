@@ -1,7 +1,16 @@
 // styles.scss
-@import "~@progress/kendo-theme-bootstrap/scss/all";
+//@import "~@progress/kendo-theme-bootstrap/scss/all";
 
 body {
     font: 100% Helvetica, sans-serif;
     color: #333;
+}
+
+a.navbar-brand,
+a.navbar-brand:hover {
+    color: white;
+}
+
+.navbar-toggler-icon {
+    color:white;
 }
