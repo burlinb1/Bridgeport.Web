@@ -28,12 +28,13 @@
     "@progress/kendo-theme-bootstrap": "^2.8.0",
     "@progress/kendo-theme-default": "^2.41.2",
     "@progress/kendo-theme-material": "^0.2.2",
+    "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "popper.js": "^1.11.0",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14",
-    "bootstrap": "^4.0.0-alpha.6"
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
     "@angular/cli": "1.4.2",
