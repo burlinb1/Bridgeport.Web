@@ -39,8 +39,10 @@ nav ul#menu li a {
 }
 
 nav.enabled ul#menu li a:hover, nav ul#menu li:hover > a {
-    background: #e9ecef;
-    color:#8dc63f;
+    // background: #e9ecef;
+    // color:#8dc63f;
+    background: #8dc63f;
+    color:#e9ecef;
 }
 
 nav.enabled ul#menu li:hover > #mega {
@@ -63,6 +65,7 @@ nav.enabled ul#menu li:hover > #mega {
             display:table-cell;
             padding-left:10px;
             padding-top:10px;
+            margin:0px;
         }
         .menu-cell:first-child {
             padding-left:0px !important;
@@ -96,21 +99,8 @@ ul#menu ul li a {
     line-height: 1.3em;
     color: #888;
     text-decoration: none;
-    padding: 6px 0;
+    padding: 0px;
 }
-
-// ul#menu ul li:first-child a {
-//     font-size: 1.2em;
-//     color: #8dc63f;
-// }
-
-ul#menu ul li a:hover {
-    background: none;
-}
-
-// ul#menu ul li:first-child a:hover {
-//     color: #fff;
-// }
 
 /* clearfix */
 nav ul:after {
@@ -126,12 +116,16 @@ nav ul {
     display: inline-block;
 } 
 
-.menu.card {
-    width:250px;
-    height:110px;
+a.menu.card {
+    // width:250px;
+    // height:110px;
+    padding:0px;
+    margin:0px;
 }
 
 .menu.card .card-body {
+    width:250px;
+    height:105px;
     padding: 0.7rem;
     a {
         text-decoration: none;
@@ -147,11 +141,15 @@ nav ul {
     }
 }
 
-.menu.card .card-body:hover {
-    color:white;
-    background-color:#8dc63f;
-    height:110px;
-}
+// a.menu.card:hover {
+//     color:white;
+//     background-color:#8dc63f;
+//     height:100px;
+
+//     .card-body {
+//         background-color:#8dc63f;    
+//     }
+// }
 
 /* override bootstrap styles*/
 .btn-primary {
