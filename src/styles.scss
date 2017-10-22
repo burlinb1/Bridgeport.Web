@@ -35,14 +35,15 @@ nav ul#menu li a {
     color: #fff;
     text-decoration: none;
     padding: 0 10px;
+
 }
 
-nav ul#menu li a:hover, nav ul#menu li:hover > a {
+nav.enabled ul#menu li a:hover, nav ul#menu li:hover > a {
     background: #e9ecef;
     color:#8dc63f;
 }
 
-nav ul#menu li:hover > #mega {
+nav.enabled ul#menu li:hover > #mega {
     display: block;
 }
 
@@ -127,7 +128,9 @@ nav ul {
 
 .menu.card {
     width:250px;
+    height:110px;
 }
+
 .menu.card .card-body {
     padding: 0.7rem;
     a {
@@ -147,4 +150,16 @@ nav ul {
 .menu.card .card-body:hover {
     color:white;
     background-color:#8dc63f;
+    height:110px;
+}
+
+/* override bootstrap styles*/
+.btn-primary {
+    background-color: #8dc63f !important;
+    border-color: #8dc63f !important;
+}
+
+.btn-primary:hover {
+    background-color: #73a034 !important;
+    border-color: #73a034 !important;
 }

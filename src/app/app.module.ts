@@ -14,37 +14,40 @@ import { StorageService } from './storage/storage.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard';
+import { NavmenuComponent } from './navmenu/navmenu.component';
 import { RateUnitTypeComponent } from './rateunittype/rateunittype.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    RateUnitTypeComponent
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        RateUnitTypeComponent,
+        NavmenuComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    //ButtonsModule,
-    LoginModule,     
-    LocalStorageModule.withConfig({
-      prefix: '',
-      storageType: 'localStorage'
-    }),
-    // Always put routing module LAST
-    AppRoutingModule   
+      BrowserModule,
+      FormsModule,
+      HttpModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      LoginModule,     
+      LocalStorageModule.withConfig({
+          prefix: '',
+          storageType: 'localStorage'
+      }),
+      // Always put routing module LAST
+      AppRoutingModule   
   ],
   providers: [
-    StorageService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
-    AuthService
+      StorageService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptor,
+        multi: true
+      },
+      AuthService,
+      AuthGuard
   ],
   bootstrap: [AppComponent]
 })
