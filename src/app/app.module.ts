@@ -4,8 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './routing/app.routing.module';
-import { ButtonsModule } from '@progress/kendo-angular-buttons';
+//import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoggingModule } from './logging/logging.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { HomeComponent } from './home/home.component';
@@ -24,31 +25,32 @@ import { RateUnitTypeComponent } from './rateunittype/rateunittype.component';
         HomeComponent,
         RateUnitTypeComponent,
         NavmenuComponent
-  ],
-  imports: [
-      BrowserModule,
-      FormsModule,
-      HttpModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      LoginModule,     
-      LocalStorageModule.withConfig({
-          prefix: '',
-          storageType: 'localStorage'
-      }),
-      // Always put routing module LAST
-      AppRoutingModule   
-  ],
-  providers: [
-      StorageService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptor,
-        multi: true
-      },
-      AuthService,
-      AuthGuard
-  ],
-  bootstrap: [AppComponent]
+    ],
+    imports: [
+        LoggingModule,
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        LoginModule,     
+        LocalStorageModule.withConfig({
+            prefix: '',
+            storageType: 'localStorage'
+        }),
+        // Always put routing module LAST
+        AppRoutingModule   
+    ],
+    providers: [
+        StorageService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        },
+        AuthService,
+        AuthGuard
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { StorageService } from '../storage/storage.service';
 import { Observable } from 'rxjs/Rx';
+import { LoggingService } from '../logging/logging.service';
 
 @Injectable()
 export class AuthService{
-    constructor(private storageService: StorageService, private http: Http) {
+    constructor(
+        //private logger: LoggingService,
+        private storageService: StorageService, 
+        private http: Http) {
     }
 
     public getToken() {
@@ -13,6 +17,8 @@ export class AuthService{
     }
 
     public isAuthenticated(): boolean {
+        //this.logger.debug("Checking isAuthenticated...");
+        
         if (this.getToken()){
             return true;
         } else {
