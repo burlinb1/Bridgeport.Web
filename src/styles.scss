@@ -171,13 +171,24 @@ a.menu.card {
         padding-bottom:15px;
     }
 
+    .title-action-bar {
+        margin-bottom: 5px;
+        > .title {
+            padding-top:10px;
+        }
+    }    
+
     .card .card-header {
         .title:first-child {
             font-weight: bold;
-        } 
-        
-        .title-action-bar .title:first-child {
-            padding-top:5px;
-        }
+        }        
+    }
+
+    .card .card-body .form-group.row:last-child {
+        margin-bottom:0px;
+    }
+
+    .save-bar {
+        margin-top:15px;
     }
 }
