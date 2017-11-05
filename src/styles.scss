@@ -27,7 +27,8 @@ nav ul#menu li {
     display: inline-block;
 }
 
-nav ul#menu li a {
+nav ul#menu li a,
+nav ul#menu li div.logo {
     display: block;
     height: 50px;
     font-size: 1em;
@@ -35,18 +36,18 @@ nav ul#menu li a {
     color: #fff;
     text-decoration: none;
     padding: 0 10px;
-
+    cursor: pointer;
 }
 
-nav.enabled ul#menu li a:hover, nav ul#menu li:hover > a {
-    // background: #e9ecef;
-    // color:#8dc63f;
+nav.enabled ul#menu li div.logo:hover, 
+nav ul#menu li:hover > a {
     background: #8dc63f;
     color:#e9ecef;
 }
 
-nav.enabled ul#menu li:hover > #mega {
-    display: block;
+nav.enabled ul#menu li a:hover, nav ul#menu li:hover > a {
+    background: #8dc63f;
+    color:#e9ecef;
 }
 
 #mega {
@@ -57,7 +58,7 @@ nav.enabled ul#menu li:hover > #mega {
     height: auto;
     padding: 10px;
     background: #e9ecef;
-    display: none;
+    z-index: 999;
 
     .menu-row {
         display:table-row;
@@ -160,4 +161,23 @@ a.menu.card {
 .btn-primary:hover {
     background-color: #73a034 !important;
     border-color: #73a034 !important;
+}
+
+.edit-form {
+    max-width:800px;
+    padding-top:15px;
+
+    > .title {
+        padding-bottom:15px;
+    }
+
+    .card .card-header {
+        .title:first-child {
+            font-weight: bold;
+        } 
+        
+        .title-action-bar .title:first-child {
+            padding-top:5px;
+        }
+    }
 }

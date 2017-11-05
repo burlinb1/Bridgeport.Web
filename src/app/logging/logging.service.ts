@@ -6,19 +6,19 @@ export class LoggingService {
     constructor(private logger: NGXLogger) {
     }
 
-    public debug(message: string) {
+    public debug(message: any) {
         this.logger.debug(message);
     }
 
-    public info(message: string) {
+    public info(message: any) {
         this.logger.info(message);
     }
 
-    public warn(message: string) {
+    public warn(message: any) {
         this.logger.warn(message);
     }
 
-    public error(message: string) {
+    public error(message: any) {
         this.logger.error(message);
     }
 }

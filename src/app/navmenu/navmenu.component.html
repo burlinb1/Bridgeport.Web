@@ -1,7 +1,7 @@
 <nav [ngClass]="{'enabled':enabled}">
   <ul id="menu">
-      <li><a href="#">Bridgeport</a>
-          <div id="mega">
+      <li><div class="logo" (click)="toggleMenu()">Bridgeport</div>
+          <div id="mega" *ngIf="visible">
               <ul>
                   <li>
                         <div class="menu-row">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -10,19 +10,23 @@ import { AuthService } from '../auth/auth.service';
 })
 export class NavmenuComponent implements OnInit {
     enabled: boolean = false;
-
+    visible: boolean = false;
+    
     constructor(private authService: AuthService, private router: Router) { 
-        var x= 0;
+        this.router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+                this.visible = false;
+            }            
+        });
     }
 
     ngOnInit() {
         if (this.authService.isAuthenticated()) {
             this.enabled = true;
         }
-    }
+    }    
 
-    goto(route: string) {
-        //this.router.navigate(['/login']);
-        //this.router.navigateByUrl(route);
+    toggleMenu() {
+        this.visible = !this.visible;       
     }
 }

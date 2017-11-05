@@ -11,5 +11,4 @@ export class RateUnitTypeComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
