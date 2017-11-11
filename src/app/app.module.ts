@@ -17,15 +17,14 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard';
 import { NavmenuComponent } from './navmenu/navmenu.component';
-import { RateUnitTypeComponent } from './rateunittype/rateunittype.component';
 import { StoreModule } from '@ngrx/store';
 import { navigationReducer } from './state/navigation.reducer';
+import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        RateUnitTypeComponent,
         NavmenuComponent
     ],
     imports: [
@@ -35,7 +34,8 @@ import { navigationReducer } from './state/navigation.reducer';
         HttpModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        LoginModule,     
+        LoginModule,   
+        RateUnitTypeModule,  
         LocalStorageModule.withConfig({
             prefix: '',
             storageType: 'localStorage'
