@@ -19,14 +19,15 @@ export class LoginComponent implements OnInit {
 
     login(){
         console.log('Logging in as ' + this.userName);
-        this.authService.authenticate(this.userName, this.password)
-            .subscribe((res) => {
-                console.log("Login successful");
-                //this.router.navigate(['/home']);
-                // TODO: this is a workaround to force app to go through bootstrapping again
-                // so that the main menu gets enabled only after authenticating. This will
-                // change when actual authentication is integrated.
-                window.location.href  = "/home";
-            });
+        this.authService.startSigninMainWindow();
+        // this.authService.authenticate(this.userName, this.password)
+        //     .subscribe((res) => {
+        //         console.log("Login successful");
+        //         //this.router.navigate(['/home']);
+        //         // TODO: this is a workaround to force app to go through bootstrapping again
+        //         // so that the main menu gets enabled only after authenticating. This will
+        //         // change when actual authentication is integrated.
+        //         window.location.href  = "/home";
+        //     });
     }
 }

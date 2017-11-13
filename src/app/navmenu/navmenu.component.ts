@@ -12,7 +12,9 @@ export class NavmenuComponent implements OnInit {
     enabled: boolean = false;
     visible: boolean = false;
     
-    constructor(private authService: AuthService, private router: Router) { 
+    constructor(
+        private authService: AuthService, 
+        private router: Router) { 
         this.router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 this.visible = false;

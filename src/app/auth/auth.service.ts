@@ -4,13 +4,27 @@ import { HttpHeaders } from '@angular/common/http';
 import { StorageService } from '../storage/storage.service';
 import { Observable } from 'rxjs/Rx';
 import { LoggingService } from '../logging/logging.service';
+import { UserManager, Log, MetadataService, User } from 'oidc-client';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService{
+    public _mgr: UserManager;
+    
     constructor(
         //private logger: LoggingService,
         private storageService: StorageService, 
-        private http: Http) {
+        private http: Http,
+        private router: Router) {
+
+        this._mgr = new UserManager({
+            authority: "http://localhost:5000",
+            client_id: "js",
+            redirect_uri: "http://localhost:4200/logincallback",
+            response_type: "id_token token",
+            scope:"openid profile api1",
+            post_logout_redirect_uri : "http://localhost:4200/index.html",
+        });
     }
 
     public getToken() {
@@ -50,5 +64,38 @@ export class AuthService{
         //         return true;
         //     })
         //     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));    
+    }
+
+    startSigninMainWindow() {
+        this._mgr.signinRedirect({ data: 'some data' }).then(function () {
+          console.log("signinRedirect done");          
+        }).catch(function (err) {
+          console.log(err);
+        });
+    }
+  
+    endSigninMainWindow() {
+        //TODO: Validate why in a promise a global variable is not accessible,
+        //      instead a method scope variable is required so it can be used within
+        //      the promise.
+        //Answer: the previous code was using function (user) { } instead of just (user) =>
+        //        because is a function that only has one parameter (user) that explains
+        //        why the other variables were undefined, the fix was to use an anonymous function
+        //        a lambda expression.
+        
+        //TODO: Validate why even though _mgr has already been instantiated, I need to enclose
+        //      the call in !== undefined, removing the if clause results in a failure of _mgr
+        //      is undefined
+        //if (typeof window !== 'undefined') {
+          this._mgr.signinRedirectCallback().then((user) => {
+            console.log("signed in");
+            //this._loggedIn = true;
+            //this._globalEventsManager.showNavBar(this._loggedIn);
+            this.storageService.setAuthToken(user.access_token);
+            this.router.navigate(['home']);
+          }).catch(function (err) {
+            console.log(err);
+          });
+        //}
     }
 }

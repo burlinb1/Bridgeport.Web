@@ -24,11 +24,11 @@ export class TokenInterceptor implements HttpInterceptor {
             // redirect to login.
             //this.router.navigate(['/login']);
         }
-        request = request.clone({
-            setHeaders: {
-                Authorization: `Bearer ${this.auth.getToken()}`
-            }
-        });
+        // request = request.clone({
+        //     setHeaders: {
+        //         Authorization: `Bearer ${this.auth.getToken()}`
+        //     }
+        // });
       
         return next.handle(request);
     }
