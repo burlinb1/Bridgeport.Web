@@ -16,7 +16,7 @@ export class RateUnitTypeComponent implements OnInit {
 
     ngOnInit() {
         this.rateUnitTypeService.getRateUnitTypes()
-            .subscribe( result => {
+            .subscribe( (result: RateUnitType) => {
                 this.rateUnitType = result;
             });
     }
