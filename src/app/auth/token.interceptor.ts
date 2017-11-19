@@ -21,14 +21,15 @@ export class TokenInterceptor implements HttpInterceptor {
       
         if (!this.auth.isAuthenticated()) {
             console.log('WARNING: user is NOT authenticated');
-            // redirect to login.
-            //this.router.navigate(['/login']);
+            // redirect home, which will redirect to auth login.
+            this.router.navigate(['/home']);
         }
-        // request = request.clone({
-        //     setHeaders: {
-        //         Authorization: `Bearer ${this.auth.getToken()}`
-        //     }
-        // });
+
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.auth.getToken()}`
+            }
+        });
       
         return next.handle(request);
     }

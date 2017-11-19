@@ -44,15 +44,15 @@ import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
         // Always put routing module LAST
         AppRoutingModule   
     ],
-    providers: [
-        StorageService,
+    providers: [        
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true
         },
         AuthService,
-        AuthGuard
+        AuthGuard,
+        StorageService
     ],
     bootstrap: [AppComponent]
 })

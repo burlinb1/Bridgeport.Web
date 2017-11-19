@@ -24,7 +24,7 @@ export class AuthService{
     }
 
     public getToken() {
-        return this.storageService.getAuthToken();
+        return this.storageService.getAuthToken().access_token;
     }
 
     public isAuthenticated(): boolean {

@@ -14,7 +14,7 @@ export class StorageService {
         this.localStorageService.set('userprofile', userProfile);
     }
 
-    getAuthToken() {
+    getAuthToken(): any {
         return this.localStorageService.get('authtoken');
     }
 }
