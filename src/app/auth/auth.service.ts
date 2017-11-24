@@ -35,8 +35,10 @@ export class AuthService{
 
     public isAuthenticated(): boolean {
         //this.logger.debug("Checking isAuthenticated...");  
-        //TODO: check for token half-life      
-        if (this.getToken()){
+        var token = this.storageService.getAuthToken();    
+        if (token){
+            var expires_at = token.expires_at;
+            
             return true;
         } else {
             return false;
