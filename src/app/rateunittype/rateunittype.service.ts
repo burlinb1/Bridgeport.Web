@@ -10,9 +10,9 @@ export class RateUnitTypeService {
 
     }
 
-    getRateUnitTypes(): Observable<RateUnitType> {
+    getRateUnitTypes(): Observable<RateUnitType[]> {
 
-        return this.http.get<RateUnitType>('http://localhost:5001/rateunittype');
+        return this.http.get<RateUnitType[]>('http://localhost:5001/rateunittype');
         
         // // TEMP: hard code a response for now.
         // let rateUnitType: RateUnitType = {

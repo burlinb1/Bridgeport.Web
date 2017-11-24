@@ -28,12 +28,12 @@ import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
         NavmenuComponent
     ],
     imports: [
-        LoggingModule,
         BrowserModule,
         FormsModule,
         HttpModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        LoggingModule,
         LoginModule,   
         RateUnitTypeModule,  
         LocalStorageModule.withConfig({

@@ -24,11 +24,18 @@ export class AuthService{
     }
 
     public getToken() {
-        return this.storageService.getAuthToken().access_token;
+        var token = this.storageService.getAuthToken();
+
+        if (token) {
+            return token.access_token;
+        } else {
+            return null;
+        }
     }
 
     public isAuthenticated(): boolean {
-        //this.logger.debug("Checking isAuthenticated...");        
+        //this.logger.debug("Checking isAuthenticated...");  
+        //TODO: check for token half-life      
         if (this.getToken()){
             return true;
         } else {

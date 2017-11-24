@@ -8,16 +8,16 @@ import { RateUnitType } from  './rateunittype';
     styleUrls: ['./rateunittype.component.css']
 })
 export class RateUnitTypeComponent implements OnInit {
-    public rateUnitType: RateUnitType;
+    //public rateUnitType: RateUnitType;
 
     constructor(private rateUnitTypeService: RateUnitTypeService) { 
   
     }
 
     ngOnInit() {
-        this.rateUnitTypeService.getRateUnitTypes()
-            .subscribe( (result: RateUnitType) => {
-                this.rateUnitType = result;
-            });
+        // this.rateUnitTypeService.getRateUnitTypes()
+        //     .subscribe( (result: RateUnitType) => {
+        //         this.rateUnitType = result;
+        //     });
     }
 }

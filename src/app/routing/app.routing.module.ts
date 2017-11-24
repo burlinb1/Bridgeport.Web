@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/auth-guard';
 import { LoginCallbackComponent } from '../login/login-callback.component';
-import { RateUnitTypeComponent } from '../rateunittype/rateunittype.component';
+import { RateUnitTypeListComponent } from '../rateunittype/rateunittypelist.component';
 import { HomeComponent } from '../home/home.component';
 
 const appRoutes: Routes = [
@@ -11,8 +11,8 @@ const appRoutes: Routes = [
         component: LoginCallbackComponent
     },
     {
-        path: 'rateunittype',
-        component: RateUnitTypeComponent,
+        path: 'rateunittypeindex',
+        component: RateUnitTypeListComponent,
         data: { title: 'Rate unit type' },
         canActivate: [AuthGuard],
     },
