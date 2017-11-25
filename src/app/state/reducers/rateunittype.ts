@@ -16,7 +16,7 @@ export const initialState: IState = {
 export function reducer(state = initialState, action: rateUnitType.Actions): IState {
     switch (action.type) {
 
-        case rateUnitType.SEARCH:
+        case rateUnitType.SEARCH_COMPLETE:
             const results = action.payload;
             const newResults = results.filter(rateUnitType => !state.entities[rateUnitType.id]);
             const newResultsIds = results.map(rateUnitType => rateUnitType.id);
