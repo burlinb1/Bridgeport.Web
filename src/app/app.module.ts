@@ -18,8 +18,10 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard';
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
 import { reducer } from './state/reducers';
+import { RateUnitTypeCollectionEffects } from './state/effects/rateunittypecollection';
 
 @NgModule({
     declarations: [
@@ -41,6 +43,7 @@ import { reducer } from './state/reducers';
             storageType: 'localStorage'
         }),
         StoreModule.provideStore(reducer),
+        //EffectsModule.run(RateUnitTypeCollectionEffects),
         // Always put routing module LAST
         AppRoutingModule   
     ],

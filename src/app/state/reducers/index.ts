@@ -84,3 +84,13 @@ export function reducer(state: any, action: any) {
  * ```
  */
 export const getRateUnitTypesState = (state: IState) => state.rateUnitTypes;
+
+//export const getRateUnitTypeEntities = createSelector(getRateUnitTypesState, fromRateUnitType.getEntities);
+export const getRateUnitTypeEntities = createSelector(getRateUnitTypesState, fromRateUnitType.getEntities);
+export const getRateUnitTypeIds = createSelector(getRateUnitTypesState, fromRateUnitType.getIds);
+
+export const getRateUnitTypesCollection = createSelector(
+    getRateUnitTypeEntities, 
+    getRateUnitTypeIds, (entities, ids) => {
+        return ids.map(id => entities[id]);
+    });
