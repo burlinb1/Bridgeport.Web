@@ -18,16 +18,6 @@ export function reducer(state = initialState, action: rateUnitType.Actions): ISt
     switch (action.type) {
         case rateUnitType.SEARCH: {
             const query = action.payload;
-  
-            if (query === '') {
-                return {
-                    ids: [],
-                    loading: false,
-                    error: '',
-                    query,
-                };
-            }
-  
             return {
                 ...state,
                 loading: true,
@@ -60,3 +50,4 @@ export function reducer(state = initialState, action: rateUnitType.Actions): ISt
 }
 
 export const getIds = (state: IState) => state.ids;
+export const getLoading = (state: IState) => state.loading;

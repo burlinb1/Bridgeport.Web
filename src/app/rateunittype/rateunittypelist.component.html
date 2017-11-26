@@ -1,4 +1,7 @@
-<button class="btn btn-primary" (click)="search()">Search</button>
+<!-- <button class="btn btn-primary" (click)="search()">Search</button> -->
+<span *ngIf='loading | async'>
+    <i class="fa fa-spinner fa-spin" style="font-size:48px;color:silver;display:inline-block;text-align: center;vertical-align: bottom;"></i>
+</span>
 <div *ngFor='let rateUnitType of rateUnitTypes | async'>
     <span>{{rateUnitType.code}}</span>
 </div>
