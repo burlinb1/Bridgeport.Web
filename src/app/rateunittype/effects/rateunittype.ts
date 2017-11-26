@@ -19,6 +19,7 @@ export class RateUnitTypeEffects {
         private actions$: Actions) {
     }
 
+    // Updates the state of rate unit type entities when SEARCH action is dispatched.
     @Effect()
     search$: Observable<Action> = this.actions$
         .ofType(actionTypes.SEARCH)

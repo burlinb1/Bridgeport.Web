@@ -1,24 +1,21 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as fromCollection from './collection';
 import * as fromRateUnitType from './rateunittype';
 import * as fromSearch from './search';
 import * as fromRoot from '../../reducers';
 import { RateUnitType } from '../rateunittype';
 
 export interface RateUnitTypeState {
-    search: fromSearch.State;
-    rateUnitTypes: fromRateUnitType.State;
-    collection: fromCollection.State;
+    search: fromSearch.IState;
+    rateUnitTypes: fromRateUnitType.IState;
 }
   
-export interface State extends fromRoot.State {
+export interface IState extends fromRoot.IState {
     'rateUnitTypes': RateUnitTypeState;
 }
   
 export const reducers = {
     search: fromSearch.reducer,
-    rateUnitTypes: fromRateUnitType.reducer,
-    collection: fromCollection.reducer
+    rateUnitTypes: fromRateUnitType.reducer
 };
 
   /**

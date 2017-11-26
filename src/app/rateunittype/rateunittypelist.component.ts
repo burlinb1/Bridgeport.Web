@@ -13,8 +13,12 @@ import * as actionTypes from './actions/rateunittype';
 export class RateUnitTypeListComponent implements OnInit {
     rateUnitTypes: Observable<RateUnitType[]>;
 
-    constructor(private store: Store<fromRateUnitTypes.State>) {
+    constructor(private store: Store<fromRateUnitTypes.IState>) {
+        // wireup listener for changes to search results.
         this.rateUnitTypes = store.select(fromRateUnitTypes.getRateUnitTypeSearchresults);
+        
+        // kick off a search right away.
+        this.store.dispatch(new actionTypes.Search(''));
     }
 
     ngOnInit() {

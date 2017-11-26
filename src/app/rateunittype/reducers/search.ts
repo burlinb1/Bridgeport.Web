@@ -1,20 +1,20 @@
 import * as rateUnitType from '../actions/rateunittype';
 
-export interface State {
+export interface IState {
     ids: number[];
     loading: boolean;
     error: string;
     query: string;
 }
   
-const initialState: State = {
+const initialState: IState = {
     ids: [],
     loading: false,
     error: '',
     query: '',
 };
 
-export function reducer(state = initialState, action: rateUnitType.Actions): State {
+export function reducer(state = initialState, action: rateUnitType.Actions): IState {
     switch (action.type) {
         case rateUnitType.SEARCH: {
             const query = action.payload;
@@ -59,4 +59,4 @@ export function reducer(state = initialState, action: rateUnitType.Actions): Sta
     }
 }
 
-export const getIds = (state: State) => state.ids;
+export const getIds = (state: IState) => state.ids;

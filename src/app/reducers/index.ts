@@ -16,16 +16,16 @@ import {
  */
 import { storeFreeze } from 'ngrx-store-freeze';
 
-export interface State {}
+export interface IState {}
 
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<IState> = {
     //layout: fromLayout.reducer,
     //routerReducer: fromRouter.routerReducer,
 };
 
 // console.log all actions
-export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-    return function(state: State, action: any): State {
+export function logger(reducer: ActionReducer<IState>): ActionReducer<IState> {
+    return function(state: IState, action: any): IState {
         console.log('state', state);
         console.log('action', action);
   
@@ -33,6 +33,6 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
     };
 }
 
-export const metaReducers: MetaReducer<State>[] = !environment.production
+export const metaReducers: MetaReducer<IState>[] = !environment.production
 ? [logger, storeFreeze]
 : [];
