@@ -14,16 +14,13 @@ export class RateUnitTypeListComponent implements OnInit {
     rateUnitTypes: Observable<RateUnitType[]>;
 
     constructor(private store: Store<fromRateUnitTypes.State>) {
-        this.rateUnitTypes = store.select(fromRateUnitTypes.getRateUnitTypeCollection);
+        this.rateUnitTypes = store.select(fromRateUnitTypes.getRateUnitTypeSearchresults);
     }
 
     ngOnInit() {
-        //this.search();
-        //this.store.dispatch(new actionTypes.SearchAction());
     }
 
     search() {        
-        //this.rateUnitTypes = this.rateUnitTypeService.getRateUnitTypes();  
         this.store.dispatch(new actionTypes.Search(''));          
     }
 }

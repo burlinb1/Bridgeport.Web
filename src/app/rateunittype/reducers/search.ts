@@ -58,3 +58,5 @@ export function reducer(state = initialState, action: rateUnitType.Actions): Sta
         }
     }
 }
+
+export const getIds = (state: State) => state.ids;

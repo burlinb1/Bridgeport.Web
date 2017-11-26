@@ -21,15 +21,9 @@ export class RateUnitTypeEffects {
 
     @Effect()
     search$: Observable<Action> = this.actions$
-      .ofType(actionTypes.SEARCH)
-      .switchMap(() =>
-            this.rateUnitTypeService.getRateUnitTypes()
+        .ofType(actionTypes.SEARCH)
+        .switchMap(() => {
+            return this.rateUnitTypeService.getRateUnitTypes()
                 .map((rateUnitTypes: RateUnitType[]) => new actionTypes.SearchComplete(rateUnitTypes))
-                //.catch(error => of(new actionTypes.SearchFailAction(error)))
-        
-                // this.db.query('books')
-        //   .toArray()
-        //   .map((books: Book[]) => new collection.LoadSuccessAction(books))
-        //   .catch(error => of(new collection.LoadFailAction(error)))
-      );
+        });
 }

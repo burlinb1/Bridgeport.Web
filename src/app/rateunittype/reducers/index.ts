@@ -1,8 +1,13 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import * as fromCollection from './collection';
+import * as fromRateUnitType from './rateunittype';
+import * as fromSearch from './search';
 import * as fromRoot from '../../reducers';
+import { RateUnitType } from '../rateunittype';
 
 export interface RateUnitTypeState {
+    search: fromSearch.State;
+    rateUnitTypes: fromRateUnitType.State;
     collection: fromCollection.State;
 }
   
@@ -11,6 +16,8 @@ export interface State extends fromRoot.State {
 }
   
 export const reducers = {
+    search: fromSearch.reducer,
+    rateUnitTypes: fromRateUnitType.reducer,
     collection: fromCollection.reducer
 };
 
@@ -46,30 +53,32 @@ export const getRateUnitTypeState =
  * only recompute when arguments change. The created selectors can also be composed
  * together to select different pieces of state.
  */
-export const getCollectionState = createSelector(
+export const getRateUnitTypeEntitiesState = createSelector(
     getRateUnitTypeState,
-    (state: RateUnitTypeState) => state.collection
+    (state) => state.rateUnitTypes
 );
 
-export const getCollectionLoaded = createSelector(
-    getCollectionState,
-    fromCollection.getLoaded
-);
+export const {
+    selectIds: getRateUnitTypeIds,
+    selectEntities: getRateUnitTypeEntities,
+    selectAll: getAllRateUnitTypes,
+    selectTotal: getTotalRateUnitTypes,
+} = fromRateUnitType.adapter.getSelectors(getRateUnitTypeEntitiesState);
 
-export const getCollectionLoading = createSelector(
-    getCollectionState,
-    fromCollection.getLoading
-);
-
-export const getCollectionRateUnitTypeIds = createSelector(
-    getCollectionState,
-    fromCollection.getIds
-);
-  
-export const getRateUnitTypeCollection = createSelector(
+export const getSearchState = createSelector(
     getRateUnitTypeState,
-    getCollectionRateUnitTypeIds,
+    (state: RateUnitTypeState) => state.search
+);
+
+export const getSearchIds = createSelector(
+    getSearchState,
+    fromSearch.getIds
+);
+
+export const getRateUnitTypeSearchresults = createSelector(
+    getRateUnitTypeEntities,
+    getSearchIds,
     (entities, ids) => {
-      return ids.map(id => entities[id]);
+        return ids.map(id => entities[id]);
     }
 );
