@@ -19,9 +19,10 @@ import { AuthGuard } from './auth/auth-guard';
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
-import { reducer } from './state/reducers';
-import { RateUnitTypeCollectionEffects } from './state/effects/rateunittypecollection';
+import { reducers, metaReducers } from './reducers';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -42,8 +43,9 @@ import { RateUnitTypeCollectionEffects } from './state/effects/rateunittypecolle
             prefix: '',
             storageType: 'localStorage'
         }),
-        StoreModule.provideStore(reducer),
-        //EffectsModule.run(RateUnitTypeCollectionEffects),
+        StoreModule.forRoot(reducers, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        EffectsModule.forRoot([]),
         // Always put routing module LAST
         AppRoutingModule   
     ],

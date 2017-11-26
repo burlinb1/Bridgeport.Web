@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import * as actionTypes from '../actions/rateunittype.action';
+import * as actionTypes from '../actions/collection';
 import { RateUnitTypeService } from '../../rateunittype/rateunittype.service';
 import { RateUnitType } from '../../rateunittype/rateunittype';
 
@@ -17,21 +17,14 @@ export class RateUnitTypeCollectionEffects {
     constructor(
         private rateUnitTypeService: RateUnitTypeService,
         private actions$: Actions) {
-
     }
 
     @Effect()
     loadCollection$: Observable<Action> = this.actions$
-      .ofType(actionTypes.SEARCH)
-      .startWith(new actionTypes.SearchAction())
+      .ofType(actionTypes.LOAD)
+      //.startWith(new actionTypes.SearchAction())
       .switchMap(() =>
             this.rateUnitTypeService.getRateUnitTypes()
-                .map((rateUnitTypes: RateUnitType[]) => new actionTypes.SearchCompleteAction(rateUnitTypes))
-                //.catch(error => of(new actionTypes.SearchFailAction(error)))
-        
-                // this.db.query('books')
-        //   .toArray()
-        //   .map((books: Book[]) => new collection.LoadSuccessAction(books))
-        //   .catch(error => of(new collection.LoadFailAction(error)))
+                .map((rateUnitTypes: RateUnitType[]) => new actionTypes.LoadSuccess(rateUnitTypes))                
       );
 }
