@@ -4,7 +4,7 @@ import { RateUnitType } from './rateunittype';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRateUnitTypes from './reducers';
-import * as actionTypes from './actions/collection';
+import * as actionTypes from './actions/rateunittype';
 
 @Component({
     selector: 'rate-unit-type-list',
@@ -14,9 +14,7 @@ export class RateUnitTypeListComponent implements OnInit {
     rateUnitTypes: Observable<RateUnitType[]>;
 
     constructor(private store: Store<fromRateUnitTypes.State>) {
-        //this.rateUnitTypes = store.select(fromRateUnitTypes.getRateUnitTypeCollection);
         this.rateUnitTypes = store.select(fromRateUnitTypes.getRateUnitTypeCollection);
-        //result = result;
     }
 
     ngOnInit() {
@@ -26,6 +24,6 @@ export class RateUnitTypeListComponent implements OnInit {
 
     search() {        
         //this.rateUnitTypes = this.rateUnitTypeService.getRateUnitTypes();  
-        //this.store.dispatch(new actionTypes.SearchAction());          
+        this.store.dispatch(new actionTypes.Search(''));          
     }
 }

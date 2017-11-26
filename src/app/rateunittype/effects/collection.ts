@@ -22,7 +22,6 @@ export class RateUnitTypeCollectionEffects {
     @Effect()
     loadCollection$: Observable<Action> = this.actions$
       .ofType(actionTypes.LOAD)
-      //.startWith(new actionTypes.SearchAction())
       .switchMap(() =>
             this.rateUnitTypeService.getRateUnitTypes()
                 .map((rateUnitTypes: RateUnitType[]) => new actionTypes.LoadSuccess(rateUnitTypes))                

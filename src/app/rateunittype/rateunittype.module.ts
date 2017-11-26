@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
 import { RateUnitTypeCollectionEffects } from './effects/collection';
+import { RateUnitTypeEffects } from './effects/rateunittype';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,10 @@ import { RateUnitTypeCollectionEffects } from './effects/collection';
         CommonModule,
         FormsModule,
         StoreModule.forFeature('rateUnitTypes', reducers),
-        EffectsModule.forFeature([RateUnitTypeCollectionEffects]),
+        EffectsModule.forFeature([
+            RateUnitTypeCollectionEffects,
+            RateUnitTypeEffects
+        ]),
     ],
     providers: [RateUnitTypeService]
 })
