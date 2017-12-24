@@ -1,4 +1,5 @@
-import * as rateUnitType from '../actions/rateunittype';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import * as cityListActions from '../actions/citylist.actions';
 
 export interface IState {
     ids: number[];
@@ -6,7 +7,7 @@ export interface IState {
     error: string;
     query: string;
 }
-  
+
 const initialState: IState = {
     ids: [],
     loading: false,
@@ -14,19 +15,18 @@ const initialState: IState = {
     query: '',
 };
 
-export function reducer(state = initialState, action: rateUnitType.Actions): IState {
-    switch (action.type) {
-        case rateUnitType.SEARCH: {
-            const query = action.payload;
+export function reducer(state = initialState, action: cityListActions.Actions): IState {
+    switch(action.type) {
+        case cityListActions.SEARCH: {
             return {
                 ...state,
                 loading: true,
                 error: '',
-                query,
+                query: action.payload,
             };
         }
-  
-        case rateUnitType.SEARCH_COMPLETE: {            
+
+        case cityListActions.SEARCH_COMPLETE: {            
             return {
                 ids: action.payload.map(item => item.id),
                 loading: false,
@@ -34,15 +34,15 @@ export function reducer(state = initialState, action: rateUnitType.Actions): ISt
                 query: state.query,
             };
         }
-  
-        case rateUnitType.SEARCH_ERROR: {
+
+        case cityListActions.SEARCH_ERROR: {
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
             };
         }
-  
+
         default: {
             return state;
         }

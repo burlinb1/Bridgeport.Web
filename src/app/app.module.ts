@@ -21,6 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
+import { CityModule } from './city';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 
@@ -38,6 +39,7 @@ import { environment } from '../environments/environment';
         BrowserAnimationsModule,
         LoggingModule,
         LoginModule,   
+        CityModule, 
         RateUnitTypeModule,  
         LocalStorageModule.withConfig({
             prefix: '',

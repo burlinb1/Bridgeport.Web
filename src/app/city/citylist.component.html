@@ -1,0 +1,6 @@
+<span *ngIf='loading | async'>
+    <i class="fa fa-spinner fa-spin" style="font-size:48px;color:silver;display:inline-block;text-align: center;vertical-align: bottom;"></i>
+</span>
+<div *ngFor='let city of cities | async'>
+    <span>{{city.name}}</span>
+</div>

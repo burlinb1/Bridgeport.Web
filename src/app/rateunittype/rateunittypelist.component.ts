@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRateUnitTypes from './reducers';
 import * as actionTypes from './actions/rateunittype';
+import { Search } from './actions/rateunittype';
 
 @Component({
     selector: 'rate-unit-type-list',
@@ -19,7 +20,7 @@ export class RateUnitTypeListComponent implements OnInit {
         this.rateUnitTypes = store.select(fromRateUnitTypes.getRateUnitTypeSearchresults);
         this.loading = store.select(fromRateUnitTypes.getLoading);
         // kick off a search right away.
-        this.store.dispatch(new actionTypes.Search(''));
+        this.search();
     }
 
     ngOnInit() {
