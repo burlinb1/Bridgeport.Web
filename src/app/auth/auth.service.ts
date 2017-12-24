@@ -3,6 +3,7 @@ import { StorageService } from '../storage/storage.service';
 //import { LoggingService } from '../logging/logging.service';
 import { UserManager, Log, MetadataService, User } from 'oidc-client';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService{
@@ -16,12 +17,12 @@ export class AuthService{
         private router: Router) {
 
         this.userManager = new UserManager({
-            authority: "http://localhost:5000",
+            authority: environment.settings.rootAuthUrl,
             client_id: "js",
-            redirect_uri: "http://localhost:4200/logincallback",
+            redirect_uri: environment.settings.rootClientUrl + "logincallback",
             response_type: "id_token token",
             scope:"openid profile api1",
-            post_logout_redirect_uri : "http://localhost:4200/index.html",
+            post_logout_redirect_uri : environment.settings.rootClientUrl + "index.html",
             automaticSilentRenew: true
         });
 

@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { RateUnitType } from './rateunittype';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class RateUnitTypeService {
@@ -12,7 +13,7 @@ export class RateUnitTypeService {
     }
 
     getRateUnitTypes(): Observable<RateUnitType[]> {
-        return this.http.get<RateUnitType[]>('http://localhost:5001/rateunittype');
+        return this.http.get<RateUnitType[]>(environment.settings.rootApiUrl + 'rateunittype');
 
         // // TEMP: hard code a response for now.
         // let rateUnitType: RateUnitType = {
