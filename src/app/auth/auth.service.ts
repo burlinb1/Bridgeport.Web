@@ -6,47 +6,68 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService{
-    public _mgr: UserManager;
-    
+    public userManager: UserManager;
+    public currentUser: User;
+    public loggedIn = false;
+
     constructor(
         //private logger: LoggingService,
         private storageService: StorageService, 
         private router: Router) {
 
-        this._mgr = new UserManager({
+        this.userManager = new UserManager({
             authority: "http://localhost:5000",
             client_id: "js",
             redirect_uri: "http://localhost:4200/logincallback",
             response_type: "id_token token",
             scope:"openid profile api1",
             post_logout_redirect_uri : "http://localhost:4200/index.html",
+            automaticSilentRenew: true
         });
+
+        this.userManager.getUser()
+            .then((user) => {
+                if (user) {
+                    this.loggedIn = true;
+                    this.currentUser = user;
+                    //this.userLoadededEvent.emit(user);
+                }
+                else {
+                    this.loggedIn = false;
+                }
+            })
+            .catch((err) => {
+                this.loggedIn = false;
+            });
     }
 
     public getToken() {
-        var token = this.storageService.getAuthToken();
+        // var token = this.storageService.getAuthToken();
 
-        if (token) {
-            return token.access_token;
-        } else {
-            return null;
-        }
+        // if (token) {
+        //     return token.access_token;
+        // } else {
+        //     return null;
+        // }
+        return this.currentUser.access_token;
     }
 
     public isAuthenticated(): boolean {
         //this.logger.debug("Checking isAuthenticated...");  
-        var token = this.storageService.getAuthToken();    
-        if (token){
-            var expires_at = token.expires_at;
+        
+        // var token = this.storageService.getAuthToken();    
+        // if (token){
+        //     var expires_at = token.expires_at;
             
-            return true;
-        } else {
-            return false;
-        }
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return this.loggedIn;
     }
 
     startSigninMainWindow() {
-        this._mgr.signinRedirect().then(function () {
+        this.userManager.signinRedirect().then(function () {
           console.log("signinRedirect done");          
         }).catch(function (err) {
           console.log(err);
@@ -54,12 +75,13 @@ export class AuthService{
     }
   
     endSigninMainWindow() {
-        this._mgr.signinRedirectCallback().then((user) => {
+        this.userManager.signinRedirectCallback().then((user) => {
             console.log("signed in");
 
             var authToken = {
                 access_token: user.access_token,
-                expires_at: user.expires_at
+                expires_at: user.expires_at,
+                expires_in: user.expires_in
             };
             
             var userProfiler = {
@@ -67,8 +89,8 @@ export class AuthService{
                 preferred_username: user.profile.preferred_username
             };
 
-            this.storageService.setAuthToken(authToken);
-            this.storageService.setUserProfile(userProfiler);
+            // this.storageService.setAuthToken(authToken);
+            // this.storageService.setUserProfile(userProfiler);
 
             this.router.navigate(['home']);
         }).catch(function (err) {

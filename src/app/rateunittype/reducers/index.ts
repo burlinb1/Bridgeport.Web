@@ -55,11 +55,8 @@ export const getRateUnitTypeEntitiesState = createSelector(
     (state) => state.rateUnitTypes
 );
 
-export const {
-    //selectIds: getRateUnitTypeIds,
-    selectEntities: getRateUnitTypeEntities,
-    //selectAll: getAllRateUnitTypes,
-    //selectTotal: getTotalRateUnitTypes,
+export const {    
+    selectEntities: getRateUnitTypeEntities,    
 } = fromRateUnitType.adapter.getSelectors(getRateUnitTypeEntitiesState);
 
 export const getSearchState = createSelector(
