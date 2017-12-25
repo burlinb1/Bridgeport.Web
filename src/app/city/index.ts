@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
 import { CityListComponent } from './citylist.component';
 import { CityListEffects } from './effects/citylist.effects';
+import { CityService } from './services/city.service';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,7 @@ import { CityListEffects } from './effects/citylist.effects';
         ]),
     ],
     providers: [
-        //RateUnitTypeService
+        CityService
     ]
 })
 export class CityModule {

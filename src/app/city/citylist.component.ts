@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as cityReducers from './reducers';
-import * as actions from './actions/citylist.actions';
+import * as cityListActions from './actions/citylist.actions';
 import { City } from './models/city';
 
 @Component({
@@ -12,7 +12,8 @@ import { City } from './models/city';
 export class CityListComponent implements OnInit {
     loading: Observable<boolean>;
     cities: Observable<City[]>;
-    
+    searchText: string = "";
+
     constructor(private store: Store<cityReducers.IState>) {
         // wireup listener for changes to search results.
         this.cities = store.select(cityReducers.getSearchResults);
@@ -25,6 +26,6 @@ export class CityListComponent implements OnInit {
     }
 
     search() {
-        this.store.dispatch(new actions.Search(''));
+        this.store.dispatch(new cityListActions.Search(this.searchText));
     }
 }
