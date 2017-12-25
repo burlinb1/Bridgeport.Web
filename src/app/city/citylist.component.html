@@ -3,23 +3,40 @@
 </span>
 <div class="edit-form">
     <div class="title">
-        <h3>Rate unit type</h3>
+        <h3>Cities</h3>
     </div>    
     <form>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group row">
-                    <div class="col-sm-10">
-                        <input [(ngModel)]="searchText" name="searchText" placeholder="Filter list" type="text" class="form-control" />
-                    </div>
-                    <div class="col-2">
-                        <input type="button" class="btn btn-primary" value="Search" (click)="search()" />
-                    </div>
+
+                    <div class="input-group col-sm-12">
+                        <input [(ngModel)]="searchText" name="searchText" type="text" class="form-control" placeholder="Search..." aria-label="Search for...">
+                        <span class="input-group-btn">
+                            <button (click)="search()" class="btn btn-secondary" type="button">Search</button>
+                        </span>
+                    </div>                   
                 </div>
             </div>
         </div>
     </form>
-</div>  
-<div *ngFor='let city of cities | async'>
-    <span>{{city.name}}</span>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-responsive table-sm table-hover">
+                <thead class="thead-default">
+                    <tr>
+                        <th>Id</th>
+                        <th style="width:100%">Name</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr *ngFor='let city of cities | async'>
+                        <td>{{city.id}}</td>
+                        <td>{{city.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+  

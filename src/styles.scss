@@ -11,7 +11,7 @@ nav {
     width: 100%;
     height: 50px;
     margin: 0 auto;
-    background: #8dc63f;
+    background: #0183ec;
     display:block;
 }
 
@@ -41,12 +41,12 @@ nav ul#menu li div.logo {
 
 nav.enabled ul#menu li div.logo:hover, 
 nav ul#menu li:hover > a {
-    background: #8dc63f;
+    background: #0183ec;
     color:#e9ecef;
 }
 
 nav.enabled ul#menu li a:hover, nav ul#menu li:hover > a {
-    background: #8dc63f;
+    background: #0183ec;
     color:#e9ecef;
 }
 
@@ -154,13 +154,13 @@ a.menu.card {
 
 /* override bootstrap styles*/
 .btn-primary {
-    background-color: #8dc63f !important;
-    border-color: #8dc63f !important;
+    background-color: #0183ec !important;
+    border-color: #0183ec !important;
 }
 
 .btn-primary:hover {
-    background-color: #73a034 !important;
-    border-color: #73a034 !important;
+    background-color: #0183ec !important;
+    border-color: #0183ec !important;
 }
 
 .edit-form {
@@ -168,7 +168,7 @@ a.menu.card {
     padding-top:15px;
 
     > .title {
-        padding-bottom:15px;
+        padding-bottom:5px;
     }
 
     .title-action-bar {
