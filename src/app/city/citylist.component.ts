@@ -28,4 +28,8 @@ export class CityListComponent implements OnInit {
     search() {
         this.store.dispatch(new cityListActions.Search(this.searchText));
     }
+
+    edit(id: number) {
+        //this.store.dispatch(new cityListActions.Get(id));
+    }
 }

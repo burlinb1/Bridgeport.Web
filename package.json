@@ -34,7 +34,7 @@
     "@progress/kendo-theme-material": "^0.2.2",
     "angular2-redux": "^4.0.0",
     "babel-polyfill": "^6.26.0",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "^4.0.0-beta.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",

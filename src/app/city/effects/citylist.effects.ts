@@ -19,18 +19,19 @@ export class CityListEffects {
         
     }
 
-    // Updates the state of rate unit type entities when SEARCH action is dispatched.
-    // @Effect()
-    // search$: Observable<Action> = this.actions$
-    //     .ofType(cityListActions.SEARCH)
-    //     .switchMap(() => {            
-    //         return this.cityService.getCities()
-    //             .map((cities: City[]) => new cityListActions.SearchComplete(cities))
-    //     });
-
+    // Updates the state of city entities when SEARCH action is dispatched.
     @Effect()
     search$: Observable<Action> = this.actions$
         .ofType(cityListActions.SEARCH)
+        .map(toPayload)     // ngrx function that maps the action payload
+        .switchMap((payload) => {            
+            return this.cityService.getCities(payload)
+                .map((cities: City[]) => new cityListActions.SearchComplete(cities))
+        });
+    
+    @Effect()
+    edit$: Observable<Action> = this.actions$
+        .ofType(cityListActions.GET)
         .map(toPayload)     // ngrx function that maps the action payload
         .switchMap((payload) => {            
             return this.cityService.getCities(payload)

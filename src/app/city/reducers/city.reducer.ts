@@ -8,7 +8,7 @@ export interface IState extends EntityState<City> {
 }
 
 export const adapter: EntityAdapter<City> = createEntityAdapter<City>({
-    selectId: (rateUnitType: City) => rateUnitType.id,
+    selectId: (city: City) => city.id,
     sortComparer: false,
 });
 
