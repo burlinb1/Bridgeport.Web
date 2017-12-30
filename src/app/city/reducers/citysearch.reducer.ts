@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import * as cityListActions from '../actions/citylist.actions';
+import * as cityListActions from '../citylist.actions';
 
 export interface IState {
     ids: number[];

@@ -3,7 +3,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import * as fromSearch from './citysearch.reducer';
 import * as fromCity from './city.reducer';
 import * as fromRoot from '../../reducers';
-import { City } from '../models/city';
+import { City } from '../city.model';
 
 export interface CityListState {
     search: fromSearch.IState;

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { City } from '../models/city';
-import { environment } from '../../../environments/environment';
+import { City } from './city.model';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CityService {

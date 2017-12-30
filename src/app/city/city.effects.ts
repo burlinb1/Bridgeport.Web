@@ -8,13 +8,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { City } from '../models/city';
-import * as cityListActions from '../actions/citylist.actions';
-import { CityService } from '../services/city.service';
+import { City } from './city.model';
+import * as cityListActions from './citylist.actions';
+import { CityService } from './city.service';
 import { toPayload } from '@ngrx/effects/src/util';
 
 @Injectable()
-export class CityListEffects {
+export class CityEffects {
     constructor(private actions$: Actions, private cityService: CityService) {
         
     }

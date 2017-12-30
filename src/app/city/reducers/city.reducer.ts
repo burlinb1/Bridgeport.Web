@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { City } from '../models/city';
-import * as actions from '../actions/citylist.actions';
+import { City } from '../city.model';
+import * as actions from '../citylist.actions';
 
 export interface IState extends EntityState<City> {
     selectedId: number | null;

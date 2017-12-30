@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { City } from '../models/city';
+import { City } from './city.model';
 
 export const SEARCH = '[CityList] Search';
 export const SEARCH_COMPLETE = '[CityList] Search Complete';
