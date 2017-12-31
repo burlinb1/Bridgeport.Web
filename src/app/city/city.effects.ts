@@ -1,5 +1,5 @@
 //import 'rxjs/add/operator/map';
-//import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/catch';
 //import 'rxjs/add/operator/startWith';
 //import 'rxjs/add/operator/switchMap';
 //import 'rxjs/add/operator/mergeMap';
@@ -26,7 +26,7 @@ export class CityEffects {
         .map(toPayload)     // ngrx function that maps the action payload
         .switchMap((payload) => {            
             return this.cityService.getCities(payload)
-                .map((cities: City[]) => new cityListActions.SearchComplete(cities))
+                .map((cities: City[]) => new cityListActions.SearchComplete(cities))                
         });
     
     @Effect()
@@ -36,5 +36,6 @@ export class CityEffects {
         .switchMap((payload) => {            
             return this.cityService.getCities(payload)
                 .map((cities: City[]) => new cityListActions.SearchComplete(cities))
+                //.catch(() => Observable.of({type: ''})))
         });
 }

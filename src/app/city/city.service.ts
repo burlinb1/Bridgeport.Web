@@ -12,6 +12,6 @@ export class CityService {
 
     getCities(searchText: string): Observable<City[]> {
         var url = environment.settings.rootApiUrl + 'city/?searchText=' + encodeURIComponent(searchText);
-        return this.http.get<City[]>(url);        
+        return this.http.get<City[]>(url);      
     }
 }

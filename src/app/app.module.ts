@@ -10,6 +10,7 @@ import { LoggingModule } from './logging/logging.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { StorageService } from './storage/storage.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,7 +30,8 @@ import { environment } from '../environments/environment';
     declarations: [
         AppComponent,
         HomeComponent,
-        NavmenuComponent
+        NavmenuComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,

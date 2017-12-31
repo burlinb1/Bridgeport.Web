@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
 import { LoggingService } from '../logging/logging.service';
 
 @Injectable()
@@ -31,6 +32,18 @@ export class TokenInterceptor implements HttpInterceptor {
             }
         });
       
-        return next.handle(request);
+        return next.handle(request)
+            .do((event: HttpEvent<any>) => {
+                // 
+            }, (err: any) => {
+                console.log(err);
+                // redirect to home if Unauthorized response
+                if (err.status == 401) {
+                    this.router.navigate(['/home']);
+                } 
+                else {
+                    // navigate to an unhandled error response page?
+                }               
+            });
     }
 }

@@ -38,7 +38,7 @@ export class AuthService{
                 }
             })
             .catch((err) => {
-                this.loggedIn = false;
+                this.loggedIn = false;                
             });
     }
 
@@ -68,10 +68,12 @@ export class AuthService{
     }
 
     startSigninMainWindow() {
+        let _router = this.router;
         this.userManager.signinRedirect().then(function () {
           console.log("signinRedirect done");          
         }).catch(function (err) {
           console.log(err);
+          _router.navigate(['error']);
         });
     }
   
@@ -95,7 +97,10 @@ export class AuthService{
 
             this.router.navigate(['home']);
         }).catch(function (err) {
+            // If we catch an error it may be because the auth server is down
+            // at the moment.
             console.log(err);
+            this.router.navigate(['error']);
         });
     }
 }

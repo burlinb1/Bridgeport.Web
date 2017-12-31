@@ -6,11 +6,16 @@ import { RateUnitTypeListComponent } from '../rateunittype/rateunittypelist.comp
 import { CityListComponent } from '../city/citylist.component';
 import { CityComponent } from '../city/city.component';
 import { HomeComponent } from '../home/home.component';
+import { ErrorComponent } from '../error/error.component';
 
 const appRoutes: Routes = [
     {
         path: 'logincallback',
         component: LoginCallbackComponent
+    },
+    {
+        path: 'error',
+        component: ErrorComponent
     },
     {
         path: 'cityindex',
