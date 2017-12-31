@@ -34,8 +34,8 @@ export class CityEffects {
         .ofType(cityListActions.GET)
         .map(toPayload)     // ngrx function that maps the action payload
         .switchMap((payload) => {            
-            return this.cityService.getCities(payload)
-                .map((cities: City[]) => new cityListActions.SearchComplete(cities))
+            return this.cityService.getCity(payload)
+                .map((city: City) => new cityListActions.GetComplete(city))
                 //.catch(() => Observable.of({type: ''})))
         });
 }

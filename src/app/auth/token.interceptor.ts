@@ -9,7 +9,8 @@ import {
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import { LoggingService } from '../logging/logging.service';
+//import { LoggingService } from '../logging/logging.service';
+//import { Logger, Log } from 'oidc-client';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -33,9 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
         });
       
         return next.handle(request)
-            .do((event: HttpEvent<any>) => {
-                // 
-            }, (err: any) => {
+            .catch((err: any) => {
                 console.log(err);
                 // redirect to home if Unauthorized response
                 if (err.status == 401) {
@@ -45,11 +44,30 @@ export class TokenInterceptor implements HttpInterceptor {
                     this.auth.userManager.removeUser()
                         .then(() => {
                             this.router.navigate(['/home'])
-                        });                    
-                } 
-                else {
-                    // navigate to an unhandled error response page?
-                }               
+                        }); 
+                    }
+                //Other case throw an error
+                return Observable.throw(err);
             });
+
+        // return next.handle(request)
+        //     .do((event: HttpEvent<any>) => {
+        //         // 
+        //     }, (err: any) => {
+        //         console.log(err);
+        //         // redirect to home if Unauthorized response
+        //         if (err.status == 401) {
+        //             //this.auth.userManager.signoutRedirect();
+        //             // make sure current user is cleared and redirect to Home,
+        //             // which will trigger another auth redirect.
+        //             this.auth.userManager.removeUser()
+        //                 .then(() => {
+        //                     this.router.navigate(['/home'])
+        //                 });                    
+        //         } 
+        //         else {
+        //             // navigate to an unhandled error response page?
+        //         }               
+        //     });
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from '../storage/storage.service';
+//import { StorageService } from '../storage/storage.service';
 //import { LoggingService } from '../logging/logging.service';
 import { UserManager, Log, MetadataService, User } from 'oidc-client';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ export class AuthService {
 
     constructor(
         //private logger: LoggingService,
-        private storageService: StorageService, 
+        //private storageService: StorageService, 
         private router: Router) {
 
         this.userManager = new UserManager({

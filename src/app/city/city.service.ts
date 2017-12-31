@@ -14,4 +14,9 @@ export class CityService {
         var url = environment.settings.rootApiUrl + 'city/?searchText=' + encodeURIComponent(searchText);
         return this.http.get<City[]>(url);      
     }
+
+    getCity(id: number): Observable<City> {
+        var url = environment.settings.rootApiUrl + 'city/' + id;
+        return this.http.get<City>(url);
+    }
 }
