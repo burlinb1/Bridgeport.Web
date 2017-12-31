@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class AuthService{
+export class AuthService {
     public userManager: UserManager;
     public currentUser: User;
     public loggedIn = false;
@@ -23,7 +23,8 @@ export class AuthService{
             response_type: "id_token token",
             scope:"openid profile api1",
             post_logout_redirect_uri : environment.settings.rootClientUrl + "index.html",
-            automaticSilentRenew: true
+            automaticSilentRenew: true,
+            silent_redirect_uri: environment.settings.rootClientUrl + "silent-refresh.html"
         });
 
         this.userManager.getUser()
@@ -65,7 +66,7 @@ export class AuthService{
         //     return false;
         // }
         return this.loggedIn;
-    }
+    }    
 
     startSigninMainWindow() {
         let _router = this.router;
