@@ -1,49 +1,70 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-//import * as fromRateUnitType from './rateunittype';
 import * as fromSearch from './citysearch.reducer';
+import * as fromCityList from './citylist.reducer';
 import * as fromCity from './city.reducer';
 import * as fromRoot from '../../reducers';
 import { City } from '../city.model';
 
-export interface CityListState {
+export interface CityState {
     search: fromSearch.IState;
-    cities: fromCity.IState;
+    cities: fromCityList.IState;
+    selectedCity: fromCity.IState;
 }
 
+// Adds to state object from app root.
 export interface IState extends fromRoot.IState {
-    'cities': CityListState;
+    'cities': CityState;
 }
 
 export const reducers = {
     search: fromSearch.reducer,
-    cities: fromCity.reducer
+    cities: fromCityList.reducer,
+    city: fromCity.reducer
 };
 
 export const getCityState = 
-    createFeatureSelector<CityListState>('cities');
+    createFeatureSelector<CityState>('cities');
 
-export const getRateUnitTypeEntitiesState = createSelector(
+export const getCityEntitiesState = createSelector(
     getCityState,
     (state) => state.cities
 );
 
 export const {    
     selectEntities: getCityEntities,    
-} = fromCity.adapter.getSelectors(getRateUnitTypeEntitiesState);
+} = fromCityList.adapter.getSelectors(getCityEntitiesState);
 
 export const getSearchState = createSelector(
     getCityState,
-    (state: CityListState) => state.search
+    (state: CityState) => state.search
 );
 
-export const getLoading = createSelector(
-    getSearchState,
-    fromSearch.getLoading
+export const getEditState = createSelector(
+    getCityState,
+    (state: CityState) => state.selectedCity
 );
 
+// export const getSearchLoading = createSelector(
+//     getSearchState,
+//     fromSearch.getLoading
+// );
+export const getSearchLoading = createSelector(
+    getCityState,
+    (state: CityState) => state.search.loading
+);
+
+export const getEditLoading = createSelector(
+    getCityState,
+    (state: CityState) => state.selectedCity.loading
+);
+
+// export const getSearchIds = createSelector(
+//     getSearchState,
+//     fromSearch.getIds
+// );
 export const getSearchIds = createSelector(
-    getSearchState,
-    fromSearch.getIds
+    getCityState,
+    (state: CityState) => state.search.ids
 );
 
 export const getSearchResults = createSelector(

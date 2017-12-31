@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import * as cityListActions from '../citylist.actions';
+import * as cityActions from '../city.actions';
 
 export interface IState {
     ids: number[];
@@ -15,9 +15,9 @@ const initialState: IState = {
     query: '',
 };
 
-export function reducer(state = initialState, action: cityListActions.Actions): IState {
+export function reducer(state = initialState, action: cityActions.Actions): IState {
     switch(action.type) {
-        case cityListActions.SEARCH: {
+        case cityActions.SEARCH: {
             return {
                 ...state,
                 loading: true,
@@ -26,7 +26,7 @@ export function reducer(state = initialState, action: cityListActions.Actions): 
             };
         }
 
-        case cityListActions.SEARCH_COMPLETE: {            
+        case cityActions.SEARCH_COMPLETE: {            
             return {
                 ids: action.payload.map(item => item.id),
                 loading: false,
@@ -35,7 +35,7 @@ export function reducer(state = initialState, action: cityListActions.Actions): 
             };
         }
 
-        case cityListActions.SEARCH_ERROR: {
+        case cityActions.SEARCH_ERROR: {
             return {
                 ...state,
                 loading: false,
@@ -49,5 +49,5 @@ export function reducer(state = initialState, action: cityListActions.Actions): 
     }
 }
 
-export const getIds = (state: IState) => state.ids;
-export const getLoading = (state: IState) => state.loading;
+//export const getIds = (state: IState) => state.ids;
+//export const getLoading = (state: IState) => state.loading;

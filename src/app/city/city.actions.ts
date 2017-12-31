@@ -15,9 +15,7 @@ export class Search implements Action {
 
 export class SearchComplete implements Action {
     readonly type = SEARCH_COMPLETE;
-    constructor(public payload: City[]) { 
-        //var results = this.payload;
-    }
+    constructor(public payload: City[]) { }
 }
 
 export class SearchError implements Action {
@@ -35,5 +33,10 @@ export class GetComplete implements Action {
     constructor(public payload: City) { }
 }
 
+export class GetError implements Action {
+    readonly type = GET_ERROR;
+    constructor(public payload: any) { }
+}
+
 export type Actions
-    = Search | SearchComplete | SearchError | Get | GetComplete;
+    = Search | SearchComplete | SearchError | Get | GetComplete | GetError;

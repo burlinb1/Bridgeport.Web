@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { City } from './city.model';
-import * as cityListActions from './citylist.actions';
+import * as cityActions from './city.actions';
 import { CityService } from './city.service';
 import { toPayload } from '@ngrx/effects/src/util';
 
@@ -22,20 +22,19 @@ export class CityEffects {
     // Updates the state of city entities when SEARCH action is dispatched.
     @Effect()
     search$: Observable<Action> = this.actions$
-        .ofType(cityListActions.SEARCH)
+        .ofType(cityActions.SEARCH)
         .map(toPayload)     // ngrx function that maps the action payload
         .switchMap((payload) => {            
             return this.cityService.getCities(payload)
-                .map((cities: City[]) => new cityListActions.SearchComplete(cities))                
+                .map((cities: City[]) => new cityActions.SearchComplete(cities))                
         });
     
     @Effect()
     edit$: Observable<Action> = this.actions$
-        .ofType(cityListActions.GET)
+        .ofType(cityActions.GET)
         .map(toPayload)     // ngrx function that maps the action payload
         .switchMap((payload) => {            
             return this.cityService.getCity(payload)
-                .map((city: City) => new cityListActions.GetComplete(city))
-                //.catch(() => Observable.of({type: ''})))
+                .map((city: City) => new cityActions.GetComplete(city))
         });
 }

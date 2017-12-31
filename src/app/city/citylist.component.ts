@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as cityReducers from './reducers';
-import * as cityListActions from './citylist.actions';
+import * as cityActions from './city.actions';
 import { City } from './city.model';
 import { Router } from '@angular/router';
 
@@ -19,9 +19,10 @@ export class CityListComponent implements OnInit {
         private store: Store<cityReducers.IState>,
         private router: Router) {
         
-            // wireup listener for changes to search results.
+        // wireup listener for changes to search results.
         this.cities = store.select(cityReducers.getSearchResults);
-        this.loading = store.select(cityReducers.getLoading);
+        this.loading = store.select(cityReducers.getSearchLoading);
+        
         // kick off a search right away.
         this.search();
     }
@@ -30,11 +31,11 @@ export class CityListComponent implements OnInit {
     }
 
     search() {
-        this.store.dispatch(new cityListActions.Search(this.searchText));
+        this.store.dispatch(new cityActions.Search(this.searchText));
     }
 
     edit(id: number) {
-        //this.store.dispatch(new cityListActions.Get(id));
+        //this.store.dispatch(new cityActions.Get(id));
         this.router.navigate(['city/' + id]);
     }
 }
