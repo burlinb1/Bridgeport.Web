@@ -189,7 +189,20 @@ a.menu.card {
     }
 
     .save-bar {
-        margin-top:15px;
+        margin-top:10px;
+
+        .button-container {
+            float:right;
+            display:table;
+        }
+
+        .button-container > div {
+            display:table-cell;
+        }
+
+        .button-container > div:last-child {
+            padding-left:10px;
+        }
     }
 }
 

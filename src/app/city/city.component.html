@@ -1,1 +1,38 @@
-<div>City</div>
+<span *ngIf='loading | async'>
+    <i class="fa fa-spinner fa-spin" style="font-size:48px;color:silver;display:inline-block;text-align: center;vertical-align: bottom;"></i>
+</span>
+<div class="edit-form" >
+    <div class="title">
+        <h3>Edit city</h3>
+    </div>   
+    <form>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Name:</label>
+                    <div class="col-sm-10">
+                        <input 
+                            [ngModel]="(city | async)?.name" 
+                            (ngModelChange)="city.name=$event" 
+                            name="city-name" 
+                            type="text" 
+                            class="form-control" />
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="row save-bar">
+            <div class="col-12">
+                <div class="button-container" style="display:table">
+                    <div>
+                        <input type="button" class="btn btn-primary" value="Save"
+                            (click)="save()" />
+                    </div>
+                    <div>
+                        <input type="button" class="btn btn-default" value="Cancel" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

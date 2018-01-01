@@ -8,7 +8,7 @@ import { City } from '../city.model';
 export interface CityState {
     search: fromSearch.IState;
     cities: fromCityList.IState;
-    selectedCity: fromCity.IState;
+    city: fromCity.IState;
 }
 
 // Adds to state object from app root.
@@ -41,7 +41,7 @@ export const getSearchState = createSelector(
 
 export const getEditState = createSelector(
     getCityState,
-    (state: CityState) => state.selectedCity
+    (state: CityState) => state.city
 );
 
 // export const getSearchLoading = createSelector(
@@ -55,9 +55,13 @@ export const getSearchLoading = createSelector(
 
 export const getEditLoading = createSelector(
     getCityState,
-    (state: CityState) => state.selectedCity.loading
+    (state: CityState) => state.city.loading
 );
 
+export const getSelectedCity = createSelector(
+    getCityState,
+    (state: CityState) => state.city.selectedCity
+)
 // export const getSearchIds = createSelector(
 //     getSearchState,
 //     fromSearch.getIds
