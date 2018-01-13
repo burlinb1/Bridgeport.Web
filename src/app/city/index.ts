@@ -6,13 +6,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
 import { CityListComponent } from './citylist.component';
 import { CityComponent } from './city.component';
+import { CityDetailsComponent } from './city-details.component';
 import { CityEffects } from './city.effects';
 import { CityService } from './city.service';
 
 @NgModule({
     declarations: [
         CityListComponent,
-        CityComponent],
+        CityComponent,
+        CityDetailsComponent],
     imports: [
         CommonModule,
         FormsModule,

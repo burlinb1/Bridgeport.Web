@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoggingService } from '../logging/logging.service';
 import { Observable } from 'rxjs/Observable';
@@ -9,24 +9,27 @@ import { City } from '../city/city.model';
 
 @Component({
     selector: 'city',
-    templateUrl: './city.component.html'
+    templateUrl: './city.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CityComponent implements OnInit {
     public city: Observable<City>;
+    public onSave = new EventEmitter<City>()
     public loading: Observable<boolean>;
-    public completeTodo = new EventEmitter();
     private id: number;
     
     constructor(
         private store: Store<cityReducers.IState>,
         private route: ActivatedRoute, 
-        private logger: LoggingService) {
+        private logger: LoggingService,
+        private cd: ChangeDetectorRef) {
         
         logger.debug(route.snapshot.params['id']);
         this.id = route.snapshot.params['id'];
 
         // dispatch 
         this.store.dispatch(new cityActions.Get(this.id));
+        
         // listen for loading, edit
         this.loading = store.select(cityReducers.getEditLoading);
         this.city = store.select(cityReducers.getSelectedCity);
@@ -35,7 +38,9 @@ export class CityComponent implements OnInit {
     ngOnInit() {
     }    
 
-    save() {
+    save(city) {
+        this.cd.detectChanges();
+        this.logger.debug(city);
         // var v = this.city.map((item) => {
         //     return Object.assign({}, item);
         // });

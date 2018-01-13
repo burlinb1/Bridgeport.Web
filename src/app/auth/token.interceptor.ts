@@ -38,17 +38,15 @@ export class TokenInterceptor implements HttpInterceptor {
                 console.log(err);
                 // redirect to home if Unauthorized response
                 if (err.status == 401) {
-                    this.auth.userManager.signoutRedirect()
-                        .then(() => {
-                            this.router.navigate(['/home'])
-                        });
                     // make sure current user is cleared and redirect to Home,
-                    // which will trigger another auth redirect.
-                    // this.auth.userManager.removeUser()
-                    //     .then(() => {
-                    //         this.router.navigate(['/home'])
-                    //     }); 
+                    // which will trigger another auth redirect.                    
+                    this.auth.userManager.removeUser()
+                        .then(() => {
+                            //this.auth.userManager.startSilentRenew();
+                            this.router.navigate(['/home'])
+                        }); 
                 }
+                
                 //Other case throw an error
                 return Observable.throw(err);
             });
