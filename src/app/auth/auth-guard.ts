@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
         let url: string = state.url;
         return this.checkLogin(url);
     }
-
+        
     checkLogin(url: string) {
         if (this.authService.isAuthenticated()) { 
             this.logger.debug("User is authenticated");

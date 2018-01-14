@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { UserManager, Log, MetadataService, User } from 'oidc-client';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +25,16 @@ export class AuthService {
             scope:"openid profile api1",
             post_logout_redirect_uri : environment.settings.rootClientUrl + "index.html",
             automaticSilentRenew: true,
-            silent_redirect_uri: environment.settings.rootClientUrl + "silent-refresh.html"
+            accessTokenExpiringNotificationTime: 4,
+            silent_redirect_uri: environment.settings.rootClientUrl + "silent-renew.html"
+        });
+
+        this.userManager.events.addAccessTokenExpiring(function(){
+            console.log('ACCESS TOKEN EXPIRING');
+        });
+
+        this.userManager.events.addSilentRenewError(function(err){
+            console.log('SELENT RENEWAL ERROR', err);
         });
 
         this.userManager.getUser()
@@ -52,7 +62,7 @@ export class AuthService {
         //     return null;
         // }
         return this.currentUser.access_token;
-    }
+    }    
 
     public isAuthenticated(): boolean {
         //this.logger.debug("Checking isAuthenticated...");  
@@ -82,16 +92,16 @@ export class AuthService {
         this.userManager.signinRedirectCallback().then((user) => {
             console.log("signed in");
 
-            var authToken = {
-                access_token: user.access_token,
-                expires_at: user.expires_at,
-                expires_in: user.expires_in
-            };
+            // var authToken = {
+            //     access_token: user.access_token,
+            //     expires_at: user.expires_at,
+            //     expires_in: user.expires_in
+            // };
             
-            var userProfiler = {
-                name: user.profile.name,
-                preferred_username: user.profile.preferred_username
-            };
+            // var userProfiler = {
+            //     name: user.profile.name,
+            //     preferred_username: user.profile.preferred_username
+            // };
 
             // this.storageService.setAuthToken(authToken);
             // this.storageService.setUserProfile(userProfiler);

@@ -9,6 +9,7 @@ import {
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/throw'
 //import { LoggingService } from '../logging/logging.service';
 //import { Logger, Log } from 'oidc-client';
 
@@ -40,15 +41,18 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (err.status == 401) {
                     // make sure current user is cleared and redirect to Home,
                     // which will trigger another auth redirect.                    
+                    this.auth.loggedIn = false;
                     this.auth.userManager.removeUser()
                         .then(() => {
                             //this.auth.userManager.startSilentRenew();
                             this.router.navigate(['/home'])
-                        }); 
+                        });
+                    //this.auth.startSigninMainWindow();
                 }
-                
-                //Other case throw an error
-                return Observable.throw(err);
+                else {
+                    //Other case throw an error
+                    return Observable.throw(err);
+                }                
             });
 
         // return next.handle(request)
