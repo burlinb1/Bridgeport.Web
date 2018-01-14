@@ -23,7 +23,7 @@ export class NavmenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.authService.isAuthenticated()) {
+        if (this.authService.loggedIn) {
             this.enabled = true;
         }
     }    

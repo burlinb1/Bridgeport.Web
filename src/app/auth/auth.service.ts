@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-//import { StorageService } from '../storage/storage.service';
 //import { LoggingService } from '../logging/logging.service';
 import { UserManager, Log, MetadataService, User } from 'oidc-client';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +12,6 @@ export class AuthService {
 
     constructor(
         //private logger: LoggingService,
-        //private storageService: StorageService, 
         private router: Router) {
 
         this.userManager = new UserManager({
@@ -37,12 +34,17 @@ export class AuthService {
             console.log('SELENT RENEWAL ERROR', err);
         });
 
+        let $this = this;
+        this.userManager.events.addUserLoaded(function(user){
+            console.log('USER LOADED', user);
+            $this.currentUser = user;
+        });
+
         this.userManager.getUser()
             .then((user) => {
                 if (user) {
                     this.loggedIn = true;
-                    this.currentUser = user;
-                    //this.userLoadededEvent.emit(user);
+                    this.currentUser = user;                    
                 }
                 else {
                     this.loggedIn = false;
@@ -54,28 +56,7 @@ export class AuthService {
     }
 
     public getToken() {
-        // var token = this.storageService.getAuthToken();
-
-        // if (token) {
-        //     return token.access_token;
-        // } else {
-        //     return null;
-        // }
         return this.currentUser.access_token;
-    }    
-
-    public isAuthenticated(): boolean {
-        //this.logger.debug("Checking isAuthenticated...");  
-        
-        // var token = this.storageService.getAuthToken();    
-        // if (token){
-        //     var expires_at = token.expires_at;
-            
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-        return this.loggedIn;
     }    
 
     startSigninMainWindow() {

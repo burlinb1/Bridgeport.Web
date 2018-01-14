@@ -22,7 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
     
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       
-        if (!this.auth.isAuthenticated()) {
+        if (!this.auth.loggedIn) {
             console.log('WARNING: user is NOT authenticated');
             // redirect home, which will redirect to auth login.
             this.router.navigate(['/home']);
