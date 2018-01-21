@@ -23,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RateUnitTypeModule } from './rateunittype/rateunittype.module';
 import { CityModule } from './city';
+import { StateModule } from './state';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 
@@ -43,6 +44,7 @@ import { environment } from '../environments/environment';
         LoggingModule,
         LoginModule,   
         CityModule, 
+        StateModule,
         RateUnitTypeModule,  
         LocalStorageModule.withConfig({
             prefix: '',

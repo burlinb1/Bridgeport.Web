@@ -1,26 +1,30 @@
 import { Component, OnInit, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { City } from './city.model';
+import { State } from '../state/state.model';
 
 @Component({
-    selector: 'city-details',
-    templateUrl: './city-details.component.html'
+    selector: 'city-form',
+    templateUrl: './city-form.component.html'
 })
-export class CityDetailsComponent implements OnInit, OnChanges {
+export class CityFormComponent implements OnInit, OnChanges {
     @Input() city: City = {
         id: -1,
         name: '',
         stateId: -1
     };
 
+    @Input() states: State[];
+
     @Output() onSave = new EventEmitter<City>();
 
     public editForm: FormGroup;
 
     constructor(public formBuilder: FormBuilder) {
-        console.log("CITY:", this.city);
         this.editForm = this.formBuilder.group({
-            'name': [this.city.name]
+            'name': [this.city.name],
+            'id': [this.city.id],
+            'stateId': [this.city.stateId]
         });
     }
     
@@ -36,6 +40,8 @@ export class CityDetailsComponent implements OnInit, OnChanges {
     }    
 
     save() {
-        //this.onSave.emit(this.editCity)
+        // pass the current form state to suscriber, who will
+        // deal with processing the update.
+        this.onSave.emit(this.editForm.value);
     }
 }

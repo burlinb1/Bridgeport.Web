@@ -5,16 +5,16 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
 import { CityListComponent } from './citylist.component';
-import { CityComponent } from './city.component';
-import { CityDetailsComponent } from './city-details.component';
+import { CityEditComponent } from './city-edit.component';
+import { CityFormComponent } from './city-form.component';
 import { CityEffects } from './city.effects';
 import { CityService } from './city.service';
 
 @NgModule({
     declarations: [
         CityListComponent,
-        CityComponent,
-        CityDetailsComponent],
+        CityEditComponent,
+        CityFormComponent],
     imports: [
         CommonModule,
         FormsModule,

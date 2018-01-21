@@ -4,7 +4,7 @@ import { AuthGuard } from '../auth/auth-guard';
 import { LoginCallbackComponent } from '../login/login-callback.component';
 import { RateUnitTypeListComponent } from '../rateunittype/rateunittypelist.component';
 import { CityListComponent } from '../city/citylist.component';
-import { CityComponent } from '../city/city.component';
+import { CityEditComponent } from '../city/city-edit.component';
 import { HomeComponent } from '../home/home.component';
 import { ErrorComponent } from '../error/error.component';
 
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'city/:id',
-        component: CityComponent,
+        component: CityEditComponent,
         data: { title: 'City' },
         canActivate: [AuthGuard]
     },
