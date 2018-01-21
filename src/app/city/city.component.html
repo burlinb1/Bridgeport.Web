@@ -2,7 +2,7 @@
     <i class="fa fa-spinner fa-spin" style="font-size:48px;color:silver;display:inline-block;text-align: center;vertical-align: bottom;"></i>
 </span>
 <city-details 
-    [city]="city | async"
+    [city]="city$ | async"
     (onSave)="save($event)">
 </city-details>
 <!-- <div class="edit-form" >

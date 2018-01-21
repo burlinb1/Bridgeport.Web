@@ -13,7 +13,7 @@ import { City } from '../city/city.model';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CityComponent implements OnInit {
-    public city: Observable<City>;
+    public city$: Observable<City>;
     public onSave = new EventEmitter<City>()
     public loading: Observable<boolean>;
     private id: number;
@@ -24,18 +24,23 @@ export class CityComponent implements OnInit {
         private logger: LoggingService,
         private cd: ChangeDetectorRef) {
         
-        logger.debug(route.snapshot.params['id']);
         this.id = route.snapshot.params['id'];
 
+        // // dispatch 
+        // this.store.dispatch(new cityActions.Get(this.id));
+        
+        // // listen for loading, edit
+        // this.loading = store.select(cityReducers.getEditLoading);
+        // this.city$ = store.select(cityReducers.getSelectedCity);
+    }
+
+    ngOnInit() {
         // dispatch 
         this.store.dispatch(new cityActions.Get(this.id));
         
         // listen for loading, edit
-        this.loading = store.select(cityReducers.getEditLoading);
-        this.city = store.select(cityReducers.getSelectedCity);
-    }
-
-    ngOnInit() {
+        this.loading = this.store.select(cityReducers.getEditLoading);
+        this.city$ = this.store.select(cityReducers.getSelectedCity);
     }    
 
     save(city) {
