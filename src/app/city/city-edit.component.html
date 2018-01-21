@@ -3,5 +3,6 @@
 </span>
 <city-form 
     [city]="city$ | async"
+    [states]="states$ | async"
     (onSave)="save($event)">
 </city-form>

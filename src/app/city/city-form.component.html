@@ -16,6 +16,24 @@
                 </div>
             </div>            
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">State:</label>
+                    <div class="col-sm-10">
+                        <select formControlName="stateId"
+                            [compareWith]="stateListCompare"
+                            class="form-control">
+                            <option value="">Select...</option>
+                            <option *ngFor="let item of stateList.controls"
+                                [ngValue]="item.value.id">
+                                {{ item.value.name }}
+                            </option>
+                        </select>
+                    </div>                    
+                </div>
+            </div>
+        </div>
         <div class="row save-bar">
             <div class="col-12">
                 <div class="button-container" style="display:table">
