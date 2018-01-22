@@ -163,12 +163,22 @@ a.menu.card {
     border-color: #0183ec !important;
 }
 
+.alert {
+    font-size: .85rem;
+    padding: .5rem !important;
+}
+
 .edit-form {
     max-width:800px;
     padding-top:15px;
 
     > .title {
         padding-bottom:5px;
+    }
+
+    .alert {
+        margin-top: 10px;
+        margin-bottom: 0px;
     }
 
     .title-action-bar {

@@ -11,7 +11,15 @@
                         <input 
                             formControlName="name" 
                             type="text" 
-                            class="form-control" />
+                            class="form-control"
+                            required />
+
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                                class="alert alert-danger">                
+                                <div *ngIf="name.errors.required">
+                                Name is required.
+                                </div>                                                           
+                            </div>
                     </div>
                 </div>
             </div>            
@@ -22,7 +30,6 @@
                     <label class="col-sm-2 col-form-label">State:</label>
                     <div class="col-sm-10">
                         <select formControlName="stateId"
-                            [compareWith]="stateListCompare"
                             class="form-control">
                             <option value="">Select...</option>
                             <option *ngFor="let item of stateList.controls"
@@ -38,11 +45,15 @@
             <div class="col-12">
                 <div class="button-container" style="display:table">
                     <div>
-                        <input type="button" class="btn btn-primary" value="Save"
+                        <input type="button" 
+                            class="btn btn-primary" 
+                            value="Save"
+                            [disabled]="(!editForm.valid)"
                             (click)="save()" />
                     </div>
                     <div>
-                        <input type="button" class="btn btn-default" value="Cancel" />
+                        <input type="button" class="btn btn-default" value="Cancel"
+                            [disabled]="!editForm.touched" />
                     </div>
                 </div>
             </div>

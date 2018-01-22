@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output, OnChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { City } from './city.model';
 import { State } from '../state/state.model';
 
@@ -22,7 +22,7 @@ export class CityFormComponent implements OnChanges {
 
     constructor(public formBuilder: FormBuilder) {
         this.editForm = this.formBuilder.group({
-            name: [this.city.name],
+            name: [this.city.name, Validators.required  ],
             id: [this.city.id],
             stateId: [this.city.stateId],
             stateList: this.formBuilder.array([])
@@ -54,14 +54,16 @@ export class CityFormComponent implements OnChanges {
         return this.editForm.get("stateList") as FormArray;
     }
     
+    public get name() { return this.editForm.get('name'); }
+
     // enables state dropdown bind to show selected option.
-    stateListCompare(item1, item2): boolean {
-        return item1 && item2 ? item1.id === item2.id : item1 === item2;
-    }       
+    // stateListCompare(item1, item2): boolean {
+    //     return item1 && item2 ? item1.id === item2 : item1 === item2;
+    // }           
 
     save() {
-        // pass the current form state to suscriber, who will
-        // deal with processing the update.
+        // validation has already been done if Save is enabled,
+        // so notify subscriber that save was clicked.
         this.onSave.emit(this.editForm.value);
     }
 }
